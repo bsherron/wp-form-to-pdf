@@ -1,0 +1,8 @@
+=== WP Post to PDF ===
+Contributors: bsdeluxe
+Tags: pdf, fpdf
+Requires at least: 3.0
+Tested up to: 3.2
+Stable tag: trunk
+
+Uses the fpdf library (v1.7, included) to take a POST and convert the data to a PDF
