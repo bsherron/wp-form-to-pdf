@@ -54,7 +54,7 @@ class WPPostToPDF {
 	
 	public function __construct() {
 		$this->file_path = $this->upload_dir() . date("Y-m-d-H-i-s") . ".pdf";
-		$this->email_to = "bob.sherron@fleishman.com,bsherron@gmail.com";
+		$this->email_to = "";
 		$this->email_subject = "New Application";
 		$this->email_message = "Attached, please find the new application.";
 		$this->email_headers = "";
