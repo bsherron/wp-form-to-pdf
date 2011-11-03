@@ -42,6 +42,7 @@ function wpftpdf_install() {
 	}
 }
 
+add_action('admin_menu', 'wpftpdf_options_page');
 /* Adds our admin options under "Options" */
 function wpftpdf_options_page() {
 	add_options_page('WP Form to PDF', 'WP Form to PDF', 10, 'wp-form-to-pdf/options.php');
@@ -82,10 +83,14 @@ class WPPostToPDF {
 	
 	public function __construct() {
 		$this->file_path = $this->upload_dir() . date("Y-m-d-H-i-s") . ".pdf";
-		$this->email_to = "";
+		$this->email_to = get_option("wpftpdf_recipients");
 		$this->email_subject = "New Application";
 		$this->email_message = "Attached, please find the new application.";
 		$this->email_headers = "";
+		$bcc = get_option("wpftpdf_bcc");
+		if ($bcc != '') {
+			$this->email_headers .= "Bcc:$bcc";	
+		}
 	}
 	
 	function create_pdf($post) {
@@ -93,17 +98,18 @@ class WPPostToPDF {
 
 		$pdf = new FHFPDF();
 		include("templates/" . $post['template_name'] . ".php");
-		//$pdf->Output($this->file_path, 'F');
-		$pdf->Output();
-		echo $this->file_path;
+		$pdf->Output($this->file_path, 'F');
+		//$pdf->Output();
+		
 	}
 	
 	function send_pdf() {
 		if (is_file($this->file_path)) {
 			if (wp_mail($this->email_to, $this->email_subject, $this->email_message, $this->email_headers, $this->file_path)) {
-				echo "Mail sent!";
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	function upload_dir() {

@@ -13,24 +13,36 @@ $ch = '';
 		<?php wp_nonce_field('update-options'); ?>
 
 		<div class="formrow first">
-			<label for="usernames"><?php _e('Twitter Username(s):', 'twitter-wings'); ?></label>
-			<input type="text" id="usernames" name="tw_usernames" class="tw_input" value="<?php echo get_option('tw_usernames'); ?>" />
-			<span class="desc"><?php _e('List of Twitter accounts separated with ",". e.g. <i>joepahl,bsdeluxe,dylanized</i> (default: <i>blank</i>)', 'twitter-wings'); ?></span>
+			<label for="wpftpdf_recipients"><?php _e('Email Recipient(s):', 'wp-form-to-pdf'); ?></label>
+			<input type="text" id="wpftpdf_recipients" name="wpftpdf_recipients" class="tw_input" value="<?php echo get_option('wpftpdf_recipients'); ?>" />
+			<span class="desc"><?php _e('Separate multiple addresses with a comma. Required to send pdf via email.', 'wp-form-to-pdf'); ?></span>
+		</div>
+		<div class="formrow">
+			<label for="wpftpdf_bcc"><?php _e('Bcc Recipient(s):', 'wp-form-to-pdf'); ?></label>
+			<input type="text" id="wpftpdf_bcc" name="wpftpdf_bcc" class="tw_input" value="<?php echo get_option('wpftpdf_bcc'); ?>" />
+			<span class="desc"><?php _e('Separate multiple addresses with a comma. (Default: <i>blank</i>)', 'wp-form-to-pdf'); ?></span>
 		</div>
 		
-		<div class="formrow hashtag">		
-			<label><?php _e('Filter Tweets by hashtag', 'twitter-wings'); ?></label>
-			<?php if(get_option('tw_hashes') != ""){ $ch = ' checked'; } else { $ch = ''; } ?>
-			<input type="checkbox" id="hashtag" name="tw_hashtag"<?php echo $ch ?> />
-			<span class="desc"><?php _e('Turn on hashtag filtering. (default: off)', 'twitter-wings'); ?></span>					
+		<div class="formrow">
+			<label for="wpftpdf_thankyou"><?php _e('Thank you message:', 'wp-form-to-pdf'); ?></label>
+			<textarea id="wpftpdf_thankyou" name="wpftpdf_thankyou" class="tw_input"><?php echo get_option('wpftpdf_thankyou'); ?></textarea>
+			<span class="desc"> </span>
 		</div>
+		<!--
+<div class="formrow hashtag">		
+			<label><?php# _e('Filter Tweets by hashtag', 'wp-form-to-pdf'); ?></label>
+			<?php# if(get_option('tw_hashes') != ""){ $ch = ' checked'; } else { $ch = ''; } ?>
+			<input type="checkbox" id="hashtag" name="tw_hashtag"<?php# echo $ch ?> />
+			<span class="desc"><?php# _e('Turn on hashtag filtering. (default: off)', 'wp-form-to-pdf'); ?></span>					
+		</div>
+-->
 		
 		</div>
 
 		<input type="hidden" name="action" value="update" />
-        <input type="hidden" name="page_options" value="tw_usernames,tw_hashes,tw_number,tw_photos,tw_user_titles,tw_screennames,tw_https,tw_chashes,tw_removehashes,tw_cache,tw_cache_time,tw_title,tw_time_below,tw_retweet,tw_reply,tw_user_display,tw_styles,tw_time_form,tw_follow_lang,tw_link_color,tw_text_color,tw_follow_count,tw_follow_button,tw_follow_name,tw_follow,tw_follow_move" />
+        <input type="hidden" name="page_options" value="wpftpdf_recipients,wpftpdf_bcc,wpftpdf_thankyou" />
 		
-		<input type="submit" class="button-primary" value="<?php _e('Save Settings', 'twitter-wings'); ?>" />
+		<input type="submit" class="button-primary" value="<?php _e('Save Settings', 'wp-form-to-pdf'); ?>" />
 	
 	</form>
 </div>

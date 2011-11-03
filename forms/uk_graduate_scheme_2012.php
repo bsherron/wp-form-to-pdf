@@ -1,6 +1,14 @@
+<?php if ($_GET['msg'] == 1) { ?>
+<p><?php echo get_option("wpftpdf_thankyou"); ?></p>
+<?php
+} 
+else {
+?>
+
 <h4>Application Form</h4>
 <form action="/wp-content/plugins/wp-form-to-pdf/create-pdf.php" method="post" target="_blank" id="dekoboko_form">
 <input type="hidden" name="template_name" id="template_name" value="<?php echo $form; ?>" />
+<input type="hidden" name="return_url" id="return_url" value="http://<?php echo htmlentities($_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] ); ?>" />
 <fieldset>
 	<legend>Personal Details</legend>
 	<ol>
@@ -329,3 +337,7 @@
  
 </fieldset>
 </form>
+
+<?php 
+} //end else
+?>

@@ -8,9 +8,11 @@ if ($_POST) {
 
 	$new_pdf = new WPPostToPDF();	
 	$new_pdf->create_pdf($_POST);
-
-//	$new_pdf->send_pdf();
-
+	if ($new_pdf->send_pdf()) {
+		wp_redirect($_POST['return_url']."?msg=1");
+		exit;
+	}
+	
 }
 
 ?>
