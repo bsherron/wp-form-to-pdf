@@ -5,4 +5,5 @@ Requires at least: 3.0
 Tested up to: 3.2
 Stable tag: trunk
 
-Uses the fpdf library (v1.7, included) to take a POST and convert the data to a PDF
+Uses the fpdf library (v1.7, included) to take a POST and convert the data to a PDF. This is crazy-specific and probably not that useful, but might be an interesting jumping off point. No sense in this continuing to take up a private repo slot.
+
